@@ -1,7 +1,7 @@
 import "./cardGrid.styles.scss";
 
 import Card from "../card/card.component";
-import NavigationButton from "../navigationButton/navigationButton.component";
+import Pagination from "../pagination/pagination.component";
 
 function CardGrid({ size, paginated, cardsType }) {
   return (
@@ -22,13 +22,7 @@ function CardGrid({ size, paginated, cardsType }) {
         <Card categoryCard={cardsType === "category"} />
         <Card categoryCard={cardsType === "category"} />
       </div>
-      {
-        paginated &&
-        <div className="pagination">
-          <NavigationButton direction={"previous"} />
-          <NavigationButton direction={"next"} />
-        </div>
-      }
+      {paginated && <Pagination />}
     </>
   );
 }

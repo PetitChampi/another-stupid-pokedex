@@ -1,0 +1,13 @@
+@import "../../style-variables.scss";
+
+.breadcrumbs {
+  font-size: 1.25rem;
+  font-weight: bold;
+
+  &_link {
+    text-decoration: underline;
+  }
+  &_text {
+    color: $colorPrimary;
+  }
+}
