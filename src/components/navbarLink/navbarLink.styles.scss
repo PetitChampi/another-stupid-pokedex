@@ -9,7 +9,7 @@
   transition: border-color $hoverTransition;
   cursor: pointer;
 
-  &:hover {
+  &:hover, &.active {
     border-color: $bodyBg;
   }
 }

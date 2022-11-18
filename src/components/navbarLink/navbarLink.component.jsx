@@ -1,8 +1,8 @@
 import "./navbarLink.styles.scss";
 
-function NavbarLink({ linkText }) {
+function NavbarLink({ linkText, active }) {
   return (
-    <span className="navbar_link">
+    <span className={`navbar_link ${active && "active"}`}>
       {linkText}
     </span>
   );

@@ -1,0 +1,17 @@
+.card_grid {
+  display: grid;
+  gap: 20px;
+
+  &.sm {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  &.lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}

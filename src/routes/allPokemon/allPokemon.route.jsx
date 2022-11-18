@@ -1,21 +1,10 @@
-import Card from "../../components/card/card.compoent";
+import CardGrid from "../../components/cardGrid/cardGrid.component";
 
 function AllPokemonView() {
   return (
     <>
       <h1 className="page-title">all pokemon</h1>
-      <div className="sm-card-grid">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+      <CardGrid size={"sm"} paginated />
     </>
   );
 }
