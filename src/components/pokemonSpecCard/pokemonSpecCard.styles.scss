@@ -1,0 +1,35 @@
+@import "../../style-variables.scss";
+
+.spec_card {
+  border: 1px dashed $bodyText;
+  display: flex;
+  margin-top: 40px;
+
+  &_img_container, &_specs {
+    flex-basis: 50%;
+    flex-grow: 1;
+    padding: 20px 30px;
+  }
+  &_img_container {
+    margin: 0;
+    &_img {
+      max-width: 100%;
+    }
+  }
+  &_specs {
+    border-left: 1px dashed $bodyText;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    &_item {
+      font-size: 1.25rem;
+      &_label {
+        font-weight: bold;
+      }
+      &_data {
+        font-weight: lighter;
+      }
+    }
+  }
+}
