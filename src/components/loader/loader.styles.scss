@@ -1,0 +1,45 @@
+@import "../../style-variables.scss";
+
+.loader {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &_container {
+      height: 70px;
+      width: 70px;
+      position: relative;
+
+    &_wheel {
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      border: 8px solid rgba($colorPrimary, .2);
+      border-radius: 50%;
+    }
+    &_spinner {
+      box-sizing: border-box;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border: 8px solid transparent;
+      border-left-color: $colorPrimary;
+      border-radius: 50%;
+      animation: rotating 1s linear infinite;
+    }
+  }
+
+  &_text {
+    font-size: 1.25rem;
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
