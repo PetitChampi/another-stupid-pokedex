@@ -1,0 +1,29 @@
+@import "../../style-variables.scss";
+
+.error {
+  text-align: center;
+  margin-top: 100px;
+
+  &_title {
+    margin: 0;
+    font-size: 6.25rem;
+  }
+  &_subtitle {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: normal;
+  }
+  &_cta {
+    margin-top: 40px;
+    font-size: 1.25rem;
+
+    &_link {
+      color: $colorPrimary;
+      text-decoration: underline;
+      transition: text-decoration-color $hoverTransition;
+    &:hover {
+        text-decoration-color: rgba($colorPrimary, 0.5);
+      }
+    }
+  }
+}
