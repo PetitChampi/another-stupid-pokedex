@@ -1,5 +1,6 @@
 import CardGrid from "../../components/cardGrid/cardGrid.component";
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
+import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPokemonByGen } from "../../store/pokemonSlice";
@@ -9,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 function TypeItemView() {
   const dispatch = useDispatch();
-  const { pokemons } = useSelector((state) => state.pokemon);
+  const { pokemons, loading } = useSelector((state) => state.pokemon);
 
   const { genNumber } = useParams();
 
@@ -39,7 +40,15 @@ function TypeItemView() {
     <>
       <h1 className="page-title">gen {genNumber} pokemon</h1>
       <Breadcrumbs pathList={pathList} />
-      <CardGrid size={"sm"} paginated cardsData={cardsData} />
+      {loading ?
+        <div className="loader_container">
+          <Loader />
+        </div>
+      : 
+        (cardsData &&
+          <CardGrid size={"sm"} paginated cardsData={cardsData} />
+        )
+      }
     </>
   );
 }

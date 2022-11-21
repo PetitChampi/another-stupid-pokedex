@@ -1,4 +1,5 @@
 import CardGrid from "../../components/cardGrid/cardGrid.component";
+import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getTypes } from "../../store/typesSlice";
@@ -6,7 +7,7 @@ import { useEffect } from "react";
 
 function TypesView() {
   const dispatch = useDispatch();
-  const { typesData } = useSelector((state) => state.types)
+  const { typesData, loading } = useSelector((state) => state.types);
 
   const cardsData = typesData
     .filter(type => type.name !== "shadow" && type.name !== "unknown")
@@ -25,12 +26,17 @@ function TypesView() {
   return (
     <>
       <h1 className="page-title">what's your type?</h1>
-      <CardGrid
-        size={"sm"}
-        cardsType={"category"}
-        cardsData={cardsData}
-        paginated
-      />
+      {loading ?
+        <div className="loader_container">
+          <Loader />
+        </div>
+        : (cardsData &&
+        <CardGrid
+          size={"sm"}
+          cardsType={"category"}
+          cardsData={cardsData}
+        />)
+      }
     </>
   );
 }

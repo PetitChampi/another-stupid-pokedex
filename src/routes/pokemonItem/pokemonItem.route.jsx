@@ -1,10 +1,18 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
 import PokemonSpecCard from "../../components/pokemonSpecCard/pokemonSpecCard.component";
 import Pagination from "../../components/pagination/pagination.component";
+import Loader from "../../components/loader/loader.component";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { getIndividualPokemon } from "../../store/pokemonSlice";
+import { useEffect } from "react";
 
 import { useParams, useLocation } from "react-router-dom";
 
 function PokemonItemView() {
+  const dispatch = useDispatch();
+  const { individualPokemon, loading } = useSelector((state) => state.pokemon);
+
   const location = useLocation();
   const { pokemonName } = useParams();
 
@@ -27,18 +35,28 @@ function PokemonItemView() {
     return pathList
   }
 
+  useEffect(() => {
+    dispatch(getIndividualPokemon(pokemonName));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <h1 className="page-title">{pokemonName}</h1>
       <Breadcrumbs pathList={createPathList()} />
       <div style={{maxWidth: "50%"}}>
-        <PokemonSpecCard
-          pokemonName={pokemonName}
-          types={["grass", "poison"]}
-          weight={"69"}
-          height={"7"}
-        />
-        <Pagination />
+        {loading ?
+          <div className="loader_container">
+            <Loader />
+          </div>
+        :
+          (individualPokemon &&
+            <div>
+              <PokemonSpecCard pokemonData={individualPokemon} />
+              <Pagination />
+            </div>
+          )
+        }
       </div>
     </>
   );

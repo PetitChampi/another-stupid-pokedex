@@ -22,10 +22,18 @@ export const getPokemonByGen = createAsyncThunk(
     return response;
   }
 );
+export const getIndividualPokemon = createAsyncThunk(
+  'getIndividualPokemon',
+  async (pokeName, thunkAPI) => {
+    const response = await apiCall(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
+    return response;
+  }
+);
 
 export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
+    individualPokemon: null,
     pokemons: [],
     pagination: {
       prev: null,
@@ -36,17 +44,36 @@ export const pokemonSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getAllPokemon.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getAllPokemon.fulfilled, (state, action) => {
         state.pokemons = action.payload.results;
         state.pagination = { prev: action.payload.previous, next: action.payload.next };
         state.loading = false;
       })
+
+      .addCase(getPokemonByType.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getPokemonByType.fulfilled, (state, action) => {
         state.pokemons = action.payload.pokemon;
         state.loading = false;
       })
+
+      .addCase(getPokemonByGen.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getPokemonByGen.fulfilled, (state, action) => {
         state.pokemons = action.payload.pokemon_species;
+        state.loading = false;
+      })
+      
+      .addCase(getIndividualPokemon.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getIndividualPokemon.fulfilled, (state, action) => {
+        state.individualPokemon = action.payload;
         state.loading = false;
       })
   },

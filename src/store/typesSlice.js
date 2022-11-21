@@ -18,6 +18,9 @@ export const typesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getTypes.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getTypes.fulfilled, (state, action) => {
         state.typesData = action.payload.results;
         state.loading = false;

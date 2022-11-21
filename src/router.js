@@ -22,7 +22,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AppLayout />}>
       <Route path="*" element={<ErrorView />} />
-      <Route path="/" element={<AllPokemonView />} />
+      {[
+        "/",
+        "/pokemon",
+        "/all",
+      ].map((path, index) => {
+        return <Route path={path} element={<AllPokemonView />} key={index} />;
+      })}
       <Route path="/types" element={<TypesView />} />
       <Route path="/types/:typeName" element={<TypeItemView />} />
       <Route path="/gens" element={<GensView />} />
