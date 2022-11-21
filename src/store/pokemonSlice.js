@@ -15,6 +15,13 @@ export const getPokemonByType = createAsyncThunk(
     return response;
   }
 );
+export const getPokemonByGen = createAsyncThunk(
+  'getPokemonByGen',
+  async (genNumber, thunkAPI) => {
+    const response = await apiCall(`https://pokeapi.co/api/v2/generation/${genNumber}`);
+    return response;
+  }
+);
 
 export const pokemonSlice = createSlice({
   name: "pokemon",
@@ -36,6 +43,10 @@ export const pokemonSlice = createSlice({
       })
       .addCase(getPokemonByType.fulfilled, (state, action) => {
         state.pokemons = action.payload.pokemon;
+        state.loading = false;
+      })
+      .addCase(getPokemonByGen.fulfilled, (state, action) => {
+        state.pokemons = action.payload.pokemon_species;
         state.loading = false;
       })
   },
