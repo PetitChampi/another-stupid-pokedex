@@ -25,11 +25,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<AllPokemonView />} />
       <Route path="/pokemon/:pokemonName" element={<PokemonItemView />} />
       <Route path="/types" element={<TypesView />} />
-      <Route path="/types/:id" element={<TypeItemView />} />
-      <Route path="/types/:id/:pokemonName" element={<PokemonItemView />} />
+      <Route path="/types/:typeName" element={<TypeItemView />} />
+      <Route path="/types/:typeName/:pokemonName" element={<PokemonItemView />} />
       <Route path="/gens" element={<GensView />} />
-      <Route path="/gens/:id" element={<GenItemView />} />
-      <Route path="/gens/:id/:pokemonName" element={<PokemonItemView />} />
+      <Route path="/gens/:genNumber" element={<GenItemView />} />
+      <Route path="/gens/:genNumber/:pokemonName" element={<PokemonItemView />} />
     </Route>
   )
 );

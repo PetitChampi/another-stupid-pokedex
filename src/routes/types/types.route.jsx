@@ -1,10 +1,36 @@
 import CardGrid from "../../components/cardGrid/cardGrid.component";
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getTypes } from "../../store/typesSlice";
+import { useEffect } from "react";
+
 function TypesView() {
+  const dispatch = useDispatch();
+  const { typesData } = useSelector((state) => state.types)
+
+  const cardsData = typesData
+    .filter(type => type.name !== "shadow" && type.name !== "unknown")
+    .map(type => {
+      return {
+        name: type.name,
+        link: `/types/${type.name}`,
+      }
+    })
+
+  useEffect(() => {
+    dispatch(getTypes());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <h1 className="page-title">what's your type?</h1>
-      <CardGrid size={"sm"} cardsType={"category"} />
+      <CardGrid
+        size={"sm"}
+        cardsType={"category"}
+        cardsData={cardsData}
+        paginated
+      />
     </>
   );
 }

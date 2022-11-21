@@ -8,6 +8,13 @@ export const getAllPokemon = createAsyncThunk(
     return response;
   }
 );
+export const getPokemonByType = createAsyncThunk(
+  'getPokemonByType',
+  async (type, thunkAPI) => {
+    const response = await apiCall(`https://pokeapi.co/api/v2/type/${type}`);
+    return response;
+  }
+);
 
 export const pokemonSlice = createSlice({
   name: "pokemon",
@@ -17,14 +24,20 @@ export const pokemonSlice = createSlice({
       prev: null,
       next: null,
     },
-    isPending: true,
+    loading: true,
     error: null,
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllPokemon.fulfilled, (state, action) => {
-      state.pokemons = action.payload.results;
-      state.pagination = { prev: action.payload.previous, next: action.payload.next };
-    })
+    builder
+      .addCase(getAllPokemon.fulfilled, (state, action) => {
+        state.pokemons = action.payload.results;
+        state.pagination = { prev: action.payload.previous, next: action.payload.next };
+        state.loading = false;
+      })
+      .addCase(getPokemonByType.fulfilled, (state, action) => {
+        state.pokemons = action.payload.pokemon;
+        state.loading = false;
+      })
   },
 });
 

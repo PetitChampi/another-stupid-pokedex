@@ -3,7 +3,13 @@ import "./cardGrid.styles.scss";
 import Card from "../card/card.component";
 import Pagination from "../pagination/pagination.component";
 
-function CardGrid({ size, paginated, paginationActions, cardsType, cardsData }) {
+function CardGrid({
+  size,
+  paginated,
+  paginationActions = {prev: null, next: null},
+  cardsType,
+  cardsData,
+}) {
 
   return (
     <>
@@ -12,12 +18,12 @@ function CardGrid({ size, paginated, paginationActions, cardsType, cardsData }) 
         ${size === "sm" && "sm"}
         ${size === "lg" && "lg"}`
       }>
-        {cardsData.map(item => {
+        {cardsData.map((item, index) => {
           return (<Card 
-            key={item.name}
+            key={index}
             categoryCard={cardsType === "category"}
             cardTitle={item.name}
-            cardLink={`/pokemon/${item.name}`}
+            cardLink={item.link}
           />)
         })}
       </div>

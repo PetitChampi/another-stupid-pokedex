@@ -16,7 +16,12 @@ function TypeItemView() {
     <>
       <h1 className="page-title">water type pokemon</h1>
       <Breadcrumbs pathList={pathList} />
-      <CardGrid size={"sm"} paginated />
+      <CardGrid 
+        size={"sm"}
+        paginated
+        paginationActions={{ prev: null, next: null }}
+        cardsData={[]}
+      />
     </>
   );
 }
