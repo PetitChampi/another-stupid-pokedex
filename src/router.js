@@ -23,13 +23,17 @@ const router = createBrowserRouter(
     <Route element={<AppLayout />}>
       <Route path="*" element={<ErrorView />} />
       <Route path="/" element={<AllPokemonView />} />
-      <Route path="/pokemon/:pokemonName" element={<PokemonItemView />} />
       <Route path="/types" element={<TypesView />} />
       <Route path="/types/:typeName" element={<TypeItemView />} />
-      <Route path="/types/:typeName/:pokemonName" element={<PokemonItemView />} />
       <Route path="/gens" element={<GensView />} />
       <Route path="/gens/:genNumber" element={<GenItemView />} />
-      <Route path="/gens/:genNumber/:pokemonName" element={<PokemonItemView />} />
+      {[
+        "/pokemon/:pokemonName",
+        "/types/:typeName/:pokemonName",
+        "/gens/:genNumber/:pokemonName",
+      ].map((path, index) => {
+        return <Route path={path} element={<PokemonItemView />} key={index} />;
+      })}
     </Route>
   )
 );
