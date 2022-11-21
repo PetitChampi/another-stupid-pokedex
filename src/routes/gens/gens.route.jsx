@@ -8,10 +8,10 @@ function GensView() {
   const dispatch = useDispatch();
   const { gensData } = useSelector((state) => state.generations)
 
-  const cardsData = gensData.map(gen => {
+  const cardsData = gensData.map((gen, index) => {
     return {
-      name: gen.name,
-      link: `/generation/${gen.name}`,
+      name: `gen ${index + 1}`,
+      link: `/gens/${index + 1}`,
     }
   })
 
