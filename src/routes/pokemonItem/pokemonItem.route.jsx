@@ -2,7 +2,11 @@ import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
 import PokemonSpecCard from "../../components/pokemonSpecCard/pokemonSpecCard.component";
 import Pagination from "../../components/pagination/pagination.component";
 
+import { useParams } from "react-router-dom";
+
 function PokemonItemView() {
+  const { pokemonName } = useParams();
+
   const pathList = [
     {
       name: "gens",
@@ -13,17 +17,17 @@ function PokemonItemView() {
       path: "/gens/1",
     },
     {
-      name: "bulbasaur",
+      name: pokemonName,
     },
   ]
 
   return (
     <>
-      <h1 className="page-title">bulbasaur</h1>
+      <h1 className="page-title">{pokemonName}</h1>
       <Breadcrumbs pathList={pathList} />
       <div style={{maxWidth: "50%"}}>
         <PokemonSpecCard
-          pokemonName={"bulbasaur"}
+          pokemonName={pokemonName}
           types={["grass", "poison"]}
           weight={"69"}
           height={"7"}

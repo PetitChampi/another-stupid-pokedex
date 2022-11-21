@@ -3,9 +3,9 @@ import { apiCall } from "../utils/apiCall.util";
 
 export const getAllPokemon = createAsyncThunk(
   'getAllPokemon',
-  async (thunkAPI) => {
-    const response = await apiCall("https://pokeapi.co/api/v2/pokemon");
-    return response.results;
+  async (url = `https://pokeapi.co/api/v2/pokemon/?limit=18`, thunkAPI) => {
+    const response = await apiCall(url);
+    return response;
   }
 );
 
@@ -13,22 +13,17 @@ export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
     pokemons: [],
+    pagination: {
+      prev: null,
+      next: null,
+    },
     isPending: true,
     error: null,
   },
-  reducers: {
-    getPokemonByType: (state) => {
-      state.value -= 1
-    },
-    getPokemonByGen: (state, action) => {
-      state.value += action.payload
-    },
-  },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getAllPokemon.fulfilled, (state, action) => {
-      // Add user to the state array
-      state.pokemons = action.payload;
+      state.pokemons = action.payload.results;
+      state.pagination = { prev: action.payload.previous, next: action.payload.next };
     })
   },
 });

@@ -13,13 +13,27 @@
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    user-select: none;
     border: 1px solid $bodyText;
+    background-color: $bodyBg;
     cursor: pointer;
     transition: box-shadow $hoverTransition, transform $hoverTransition;
   
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.6);;
+      box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.6);
+    }
+
+    &.disabled {
+      color: rgba($bodyText, .3);
+      border-color: rgba($bodyText, .3);
+
+      &:hover {
+        transform: unset;
+        box-shadow: unset;
+        cursor: default;
+        pointer-events: none;
+      }
     }
 
     &_arrow {

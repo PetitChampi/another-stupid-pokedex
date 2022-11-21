@@ -6,7 +6,13 @@ import { useEffect } from "react";
 
 function AllPokemonView() {
   const dispatch = useDispatch();
-  const { pokemons } = useSelector((state) => state.pokemon);
+  const { pokemons, pagination } = useSelector((state) => state.pokemon);
+
+  const paginationActions = () => {
+    const prev = pagination.prev ? () => dispatch(getAllPokemon(pagination.prev)) : null;
+    const next = pagination.next ? () => dispatch(getAllPokemon(pagination.next)) : null;
+    return { prev, next };
+  }
 
   useEffect(() => {
     dispatch(getAllPokemon());
@@ -16,12 +22,12 @@ function AllPokemonView() {
   return (
     <>
       <h1 className="page-title">all pokemon</h1>
-      <CardGrid size={"sm"} paginated />
-      {
-        pokemons.map(poke => {
-          return <div key={poke.name}>{poke.name}</div>
-        })
-      }
+      <CardGrid
+        size={"sm"} 
+        cardsData={pokemons}
+        paginated
+        paginationActions={paginationActions()}
+      />
     </>
   );
 }

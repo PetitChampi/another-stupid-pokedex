@@ -22,10 +22,13 @@
 
 body {
   margin: 0;
-}
 
-a {
-  color: unset;
-  text-decoration: none;
-  display: contents;
+  a {
+    color: unset;
+    text-decoration: none;
+    display: contents;
+  }
+  img {
+    max-width: 100%;
+  }
 }
