@@ -1,6 +1,6 @@
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
 import PokemonSpecCard from "../../components/pokemonSpecCard/pokemonSpecCard.component";
-import Pagination from "../../components/pagination/pagination.component";
+// import Pagination from "../../components/pagination/pagination.component";
 import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -48,14 +48,14 @@ function PokemonItemView() {
       <h1 className="page-title">{pokemonName}</h1>
       <Breadcrumbs pathList={createPathList()} />
       <div style={{maxWidth: "50%"}}>
-        {loading ?
+        {loading || !individualPokemon ?
           <div className="loader_container">
             <Loader />
           </div>
         :
           <div>
             <PokemonSpecCard pokemonData={individualPokemon} />
-            <Pagination />
+            {/* <Pagination /> */}
           </div>
         }
       </div>

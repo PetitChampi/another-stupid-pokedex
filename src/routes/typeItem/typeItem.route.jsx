@@ -4,7 +4,7 @@ import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPokemonByType } from "../../store/pokemonSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -14,6 +14,7 @@ function TypeItemView() {
 
   const { typeName } = useParams();
 
+  const [page, setPage] = useState(1);
   const pathList = [
     {
       name: "types",
@@ -34,7 +35,12 @@ function TypeItemView() {
       name: item.pokemon.name,
       link: `/types/${typeName}/${item.pokemon.name}`,
     }
-  }).slice(0, 18);
+  }).slice((page - 1) * 18, page * 18);
+
+  const paginationActions = {
+    prev: page > 1 ? () => setPage(prevPage => prevPage - 1) : null,
+    next: (page * 18) < pokemonsByType.length ? () => setPage(prevPage => prevPage + 1) : null,
+  }
 
   return (
     <>
@@ -48,7 +54,7 @@ function TypeItemView() {
         <CardGrid 
           size={"sm"}
           paginated
-          paginationActions={{ prev: null, next: null }}
+          paginationActions={paginationActions}
           cardsData={cardsData}
         />
       }

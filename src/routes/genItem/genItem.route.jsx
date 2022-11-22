@@ -4,7 +4,7 @@ import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPokemonByGen } from "../../store/pokemonSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -14,6 +14,7 @@ function TypeItemView() {
 
   const { genNumber } = useParams();
 
+  const [page, setPage] = useState(1);
   const pathList = [
     {
       name: "gens",
@@ -24,17 +25,22 @@ function TypeItemView() {
     },
   ];
 
+  useEffect(() => {
+    dispatch(getPokemonByGen(genNumber));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const cardsData = pokemons.map(poke => {
     return {
       name: poke.name,
       link: `/gens/${genNumber}/${poke.name}`,
     }
-  }).slice(0, 18);
+  }).slice((page - 1) * 18, page * 18);
 
-  useEffect(() => {
-    dispatch(getPokemonByGen(genNumber));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const paginationActions = {
+    prev: page > 1 ? () => setPage(prevPage => prevPage - 1) : null,
+    next: (page * 18) < pokemons.length ? () => setPage(prevPage => prevPage + 1) : null,
+  }
 
   return (
     <>
@@ -48,7 +54,7 @@ function TypeItemView() {
         <CardGrid
           size={"sm"}
           paginated
-          paginationActions={{ prev: null, next: null }}
+          paginationActions={paginationActions}
           cardsData={cardsData}
         />
       }

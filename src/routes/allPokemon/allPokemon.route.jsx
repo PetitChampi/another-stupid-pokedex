@@ -38,7 +38,7 @@ function AllPokemonView() {
           size={"sm"} 
           cardsData={cardsData}
           paginated
-          paginationActions={{ prev: paginationActions.prev, next: paginationActions.next }}
+          paginationActions={paginationActions}
         />
       }
     </>
