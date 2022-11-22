@@ -22,7 +22,7 @@ function TypeItemView() {
     {
       name: typeName,
     },
-  ]
+  ];
 
   useEffect(() => {
     dispatch(getPokemonByType(typeName));

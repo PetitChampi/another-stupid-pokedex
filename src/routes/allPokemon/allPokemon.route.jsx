@@ -14,12 +14,12 @@ function AllPokemonView() {
       name: poke.name,
       link: `/pokemon/${poke.name}`,
     }
-  })
+  });
 
   const paginationActions = {
     prev: pagination.prev ? () => dispatch(getAllPokemon(pagination.prev)) : null,
     next: pagination.next ? () => dispatch(getAllPokemon(pagination.next)) : null,
-  }
+  };
 
   useEffect(() => {
     dispatch(getAllPokemon());

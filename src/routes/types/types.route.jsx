@@ -16,7 +16,7 @@ function TypesView() {
         name: type.name,
         link: `/types/${type.name}`,
       }
-    })
+    });
 
   useEffect(() => {
     dispatch(getTypes());

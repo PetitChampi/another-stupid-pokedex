@@ -9,7 +9,9 @@ function ErrorView() {
       <h2 className="error_subtitle">you got lost</h2>
       <div className="error_cta">
         go back&nbsp;
-        <Link to={"/"}><span className="error_cta_link">home</span></Link>
+        <Link to={"/"}>
+          <span className="error_cta_link">home</span>
+        </Link>
       </div>
     </div>
   );

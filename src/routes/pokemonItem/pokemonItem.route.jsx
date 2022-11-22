@@ -17,22 +17,25 @@ function PokemonItemView() {
   const { pokemonName } = useParams();
 
   const createPathList = () => {
-    const pathNames = location.pathname.split("/").slice(1)
-    let totalPath = ""
-    const pathValues = []
+    const pathLocations = location.pathname.split("/").slice(1);
+    let totalPath = "";
+    const pathNames = [];
+    const pathValues = [];
   
-    pathNames
-      .slice(0, pathNames.length - 1)
-      .forEach(name => {
-        totalPath += `/${name}`
-        pathValues.push(totalPath)
-      })
+    pathLocations
+      .forEach((name, index) => {
+        if (totalPath === "/gens") pathNames.push(`gen ${name}`);
+        else pathNames.push(name);
+        if (index === pathLocations.length - 1) return;
+        totalPath += `/${name}`;
+        pathValues.push(totalPath);
+      });
   
     const pathList = pathNames.map((item, index) => {
-      return { name: item, path: pathValues[index] || null }
-    })
+      return { name: item, path: pathValues[index] || null };
+    });
 
-    return pathList
+    return pathList;
   }
 
   useEffect(() => {
@@ -50,12 +53,10 @@ function PokemonItemView() {
             <Loader />
           </div>
         :
-          (individualPokemon &&
-            <div>
-              <PokemonSpecCard pokemonData={individualPokemon} />
-              <Pagination />
-            </div>
-          )
+          <div>
+            <PokemonSpecCard pokemonData={individualPokemon} />
+            <Pagination />
+          </div>
         }
       </div>
     </>

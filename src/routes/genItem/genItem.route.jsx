@@ -22,7 +22,7 @@ function TypeItemView() {
     {
       name: `gen ${genNumber}`,
     },
-  ]
+  ];
 
   const cardsData = pokemons.map(poke => {
     return {

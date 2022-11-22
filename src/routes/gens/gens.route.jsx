@@ -7,14 +7,14 @@ import { useEffect } from "react";
 
 function GensView() {
   const dispatch = useDispatch();
-  const { gensData, loading } = useSelector((state) => state.generations)
+  const { gensData, loading } = useSelector((state) => state.generations);
 
   const cardsData = gensData.map((gen, index) => {
     return {
       name: `gen ${index + 1}`,
       link: `/gens/${index + 1}`,
     }
-  })
+  });
 
   useEffect(() => {
     dispatch(getGens());
