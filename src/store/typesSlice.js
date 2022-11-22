@@ -25,6 +25,10 @@ export const typesSlice = createSlice({
         state.typesData = action.payload.results;
         state.loading = false;
       })
+      .addCase(getTypes.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
+        state.loading = false;
+      })
   },
 });
 

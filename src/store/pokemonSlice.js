@@ -53,12 +53,20 @@ export const pokemonSlice = createSlice({
         state.pagination = { prev: action.payload.previous, next: action.payload.next };
         state.loading = false;
       })
+      .addCase(getAllPokemon.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
+        state.loading = false;
+      })
 
       .addCase(getPokemonByType.pending, (state) => {
         state.loading = true;
       })
       .addCase(getPokemonByType.fulfilled, (state, action) => {
         state.pokemonsByType = action.payload.pokemon;
+        state.loading = false;
+      })
+      .addCase(getPokemonByType.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
         state.loading = false;
       })
 
@@ -69,12 +77,20 @@ export const pokemonSlice = createSlice({
         state.pokemons = action.payload.pokemon_species;
         state.loading = false;
       })
+      .addCase(getPokemonByGen.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
+        state.loading = false;
+      })
       
       .addCase(getIndividualPokemon.pending, (state) => {
         state.loading = true;
       })
       .addCase(getIndividualPokemon.fulfilled, (state, action) => {
         state.individualPokemon = action.payload;
+        state.loading = false;
+      })
+      .addCase(getIndividualPokemon.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
         state.loading = false;
       })
   },

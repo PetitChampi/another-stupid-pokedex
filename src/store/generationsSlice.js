@@ -25,6 +25,10 @@ export const generationsSlice = createSlice({
         state.gensData = action.payload.results;
         state.loading = false;
       })
+      .addCase(getGens.rejected, (state, action) => {
+        state.error = action.error.message || "An error occured";
+        state.loading = false;
+      })
   },
 });
 
