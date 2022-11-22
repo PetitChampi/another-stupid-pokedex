@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 function TypeItemView() {
   const dispatch = useDispatch();
-  const { pokemons, loading } = useSelector((state) => state.pokemon);
+  const { pokemonsByType, loading } = useSelector((state) => state.pokemon);
 
   const { typeName } = useParams();
 
@@ -29,15 +29,12 @@ function TypeItemView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let cardsData = null;
-  if (!loading) {
-    cardsData = pokemons.map(item => {
-      return {
-        name: item.pokemon.name,
-        link: `/types/${typeName}/${item.pokemon.name}`,
-      }
-    }).slice(0, 18);
-  }
+  const cardsData = pokemonsByType.map(item => {
+    return {
+      name: item.pokemon.name,
+      link: `/types/${typeName}/${item.pokemon.name}`,
+    }
+  }).slice(0, 18);
 
   return (
     <>
@@ -47,15 +44,13 @@ function TypeItemView() {
         <div className="loader_container">
           <Loader />
         </div>
-      : 
-        (cardsData &&
-          <CardGrid 
-            size={"sm"}
-            paginated
-            paginationActions={{ prev: null, next: null }}
-            cardsData={cardsData}
-          />
-        )
+      :
+        <CardGrid 
+          size={"sm"}
+          paginated
+          paginationActions={{ prev: null, next: null }}
+          cardsData={cardsData}
+        />
       }
     </>
   );

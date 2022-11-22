@@ -34,6 +34,7 @@ export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
     individualPokemon: null,
+    pokemonsByType: [],
     pokemons: [],
     pagination: {
       prev: null,
@@ -57,7 +58,7 @@ export const pokemonSlice = createSlice({
         state.loading = true;
       })
       .addCase(getPokemonByType.fulfilled, (state, action) => {
-        state.pokemons = action.payload.pokemon;
+        state.pokemonsByType = action.payload.pokemon;
         state.loading = false;
       })
 

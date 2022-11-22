@@ -44,10 +44,13 @@ function TypeItemView() {
         <div className="loader_container">
           <Loader />
         </div>
-      : 
-        (cardsData &&
-          <CardGrid size={"sm"} paginated cardsData={cardsData} />
-        )
+      :
+        <CardGrid
+          size={"sm"}
+          paginated
+          paginationActions={{ prev: null, next: null }}
+          cardsData={cardsData}
+        />
       }
     </>
   );

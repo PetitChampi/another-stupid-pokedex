@@ -18,6 +18,9 @@ export const generationsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getGens.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getGens.fulfilled, (state, action) => {
         state.gensData = action.payload.results;
         state.loading = false;

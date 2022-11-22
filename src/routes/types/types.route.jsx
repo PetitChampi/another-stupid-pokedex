@@ -30,12 +30,12 @@ function TypesView() {
         <div className="loader_container">
           <Loader />
         </div>
-        : (cardsData &&
+      :
         <CardGrid
           size={"sm"}
           cardsType={"category"}
           cardsData={cardsData}
-        />)
+        />
       }
     </>
   );
