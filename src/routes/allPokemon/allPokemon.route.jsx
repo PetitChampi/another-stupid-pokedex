@@ -2,12 +2,12 @@ import CardGrid from "../../components/cardGrid/cardGrid.component";
 import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPokemon } from "../../store/pokemonSlice";
+import { getAllPokemon } from "../../store/pokeListSlice";
 import { useEffect } from "react";
 
 function AllPokemonView() {
   const dispatch = useDispatch();
-  const { pokemons, pagination, loading } = useSelector((state) => state.pokemon);
+  const { pokemons, pagination, loading } = useSelector((state) => state.pokeList);
 
   const cardsData = pokemons.map(poke => {
     return {

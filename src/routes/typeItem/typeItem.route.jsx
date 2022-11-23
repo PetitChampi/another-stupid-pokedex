@@ -3,14 +3,14 @@ import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
 import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPokemonByType } from "../../store/pokemonSlice";
+import { getPokemonByType } from "../../store/pokeListSlice";
 import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
 function TypeItemView() {
   const dispatch = useDispatch();
-  const { pokemonsByType, loading } = useSelector((state) => state.pokemon);
+  const { pokemonsByType, loading } = useSelector((state) => state.pokeList);
 
   const { typeName } = useParams();
 

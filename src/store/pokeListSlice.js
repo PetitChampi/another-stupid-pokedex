@@ -22,18 +22,10 @@ export const getPokemonByGen = createAsyncThunk(
     return response;
   }
 );
-export const getIndividualPokemon = createAsyncThunk(
-  'getIndividualPokemon',
-  async (pokeName, thunkAPI) => {
-    const response = await apiCall(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
-    return response;
-  }
-);
 
-export const pokemonSlice = createSlice({
-  name: "pokemon",
+export const pokeListSlice = createSlice({
+  name: "pokeList",
   initialState: {
-    individualPokemon: null,
     pokemonsByType: [],
     pokemons: [],
     pagination: {
@@ -81,19 +73,7 @@ export const pokemonSlice = createSlice({
         state.error = action.error.message || "An error occured";
         state.loading = false;
       })
-      
-      .addCase(getIndividualPokemon.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getIndividualPokemon.fulfilled, (state, action) => {
-        state.individualPokemon = action.payload;
-        state.loading = false;
-      })
-      .addCase(getIndividualPokemon.rejected, (state, action) => {
-        state.error = action.error.message || "An error occured";
-        state.loading = false;
-      })
   },
 });
 
-export default pokemonSlice.reducer;
+export default pokeListSlice.reducer;

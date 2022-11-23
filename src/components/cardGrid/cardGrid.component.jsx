@@ -24,6 +24,7 @@ function CardGrid({
             categoryCard={cardsType === "category"}
             cardTitle={item.name}
             cardLink={item.link}
+            singlePokeKey={item.singlePokeKey}
           />)
         })}
       </div>

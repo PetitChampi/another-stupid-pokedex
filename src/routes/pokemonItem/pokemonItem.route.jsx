@@ -4,14 +4,14 @@ import PokemonSpecCard from "../../components/pokemonSpecCard/pokemonSpecCard.co
 import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getIndividualPokemon } from "../../store/pokemonSlice";
+import { getIndividualPokemon } from "../../store/singlePokeSlice";
 import { useEffect } from "react";
 
 import { useParams, useLocation } from "react-router-dom";
 
 function PokemonItemView() {
   const dispatch = useDispatch();
-  const { individualPokemon, loading } = useSelector((state) => state.pokemon);
+  const { individualPokemon, loading } = useSelector((state) => state.singlePoke);
 
   const location = useLocation();
   const { pokemonName } = useParams();
@@ -39,7 +39,10 @@ function PokemonItemView() {
   }
 
   useEffect(() => {
-    dispatch(getIndividualPokemon(pokemonName));
+    dispatch(getIndividualPokemon({
+      pokeKey: pokemonName,
+      keyType: "name"
+    }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

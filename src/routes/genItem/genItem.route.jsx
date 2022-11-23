@@ -3,14 +3,14 @@ import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs.component";
 import Loader from "../../components/loader/loader.component";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPokemonByGen } from "../../store/pokemonSlice";
+import { getPokemonByGen } from "../../store/pokeListSlice";
 import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
 function TypeItemView() {
   const dispatch = useDispatch();
-  const { pokemons, loading } = useSelector((state) => state.pokemon);
+  const { pokemons, loading } = useSelector((state) => state.pokeList);
 
   const { genNumber } = useParams();
 
@@ -34,6 +34,10 @@ function TypeItemView() {
     return {
       name: poke.name,
       link: `/gens/${genNumber}/${poke.name}`,
+      singlePokeKey: {
+        value: "https://pokeapi.co/api/v2/pokemon/1",
+        type: "url",
+      },
     }
   }).slice((page - 1) * 18, page * 18);
 
@@ -44,7 +48,7 @@ function TypeItemView() {
 
   return (
     <>
-      <h1 className="page-title">gen {genNumber} pokemon</h1>
+      <h1 className="page-title">gen {genNumber} pokemon species</h1>
       <Breadcrumbs pathList={pathList} />
       {loading ?
         <div className="loader_container">
