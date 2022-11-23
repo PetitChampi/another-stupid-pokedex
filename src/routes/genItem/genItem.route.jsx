@@ -34,9 +34,10 @@ function TypeItemView() {
     return {
       name: poke.name,
       link: `/gens/${genNumber}/${poke.name}`,
-      singlePokeKey: {
-        value: "https://pokeapi.co/api/v2/pokemon/1",
-        type: "url",
+      singlePokeData: {
+        // TODO send single poke data asynchronously
+        key: "https://pokeapi.co/api/v2/pokemon/ditto",
+        keyType: "url",
       },
     }
   }).slice((page - 1) * 18, page * 18);

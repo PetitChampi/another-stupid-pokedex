@@ -13,6 +13,11 @@ function GensView() {
     return {
       name: `gen ${index + 1}`,
       link: `/gens/${index + 1}`,
+      singlePokeData: {
+        // TODO fetch single gen + add url for single type first pokemon
+        key: "https://pokeapi.co/api/v2/pokemon/ditto",
+        keyType: "url",
+      },
     }
   });
 

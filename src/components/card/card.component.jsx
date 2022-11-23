@@ -11,8 +11,8 @@ function Card({ categoryCard, cardTitle, cardLink, singlePokeData }) {
 
   useEffect(() => {
     dispatch(getIndividualPokemon({
-      pokeKey: "https://pokeapi.co/api/v2/pokemon/bulbasaur",
-      keyType: "url",
+      pokeKey: singlePokeData.key,
+      keyType: singlePokeData.keyType,
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

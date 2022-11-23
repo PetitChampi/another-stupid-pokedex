@@ -15,6 +15,11 @@ function TypesView() {
       return {
         name: type.name,
         link: `/types/${type.name}`,
+        singlePokeData: {
+          // TODO fetch single type + add url for single type first pokemon
+          key: "https://pokeapi.co/api/v2/pokemon/ditto",
+          keyType: "url",
+        },
       }
     });
 

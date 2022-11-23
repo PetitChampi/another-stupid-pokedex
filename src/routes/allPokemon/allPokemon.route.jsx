@@ -13,6 +13,11 @@ function AllPokemonView() {
     return {
       name: poke.name,
       link: `/pokemon/${poke.name}`,
+      singlePokeData: {
+        // TODO send single poke data asynchronously
+        key: "https://pokeapi.co/api/v2/pokemon/ditto",
+        keyType: "url",
+      },
     }
   });
 
