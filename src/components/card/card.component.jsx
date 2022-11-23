@@ -1,23 +1,23 @@
 import "./card.styles.scss";
 
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getIndividualPokemon } from "../../store/singlePokeSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Card({ categoryCard, cardTitle, cardLink, singlePokeData }) {
   const dispatch = useDispatch();
-  const { individualPokemon } = useSelector((state) => state.singlePoke);
+
+  const [cardImgUrl, setCardImgUrl] = useState("");
 
   useEffect(() => {
     dispatch(getIndividualPokemon({
       pokeKey: singlePokeData.key,
       keyType: singlePokeData.keyType,
-    }));
+    }))
+      .then(res => setCardImgUrl(res.payload.sprites.front_default));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const cardImgUrl = individualPokemon && individualPokemon.sprites.front_default;
 
   return (
     <Link to={cardLink}>

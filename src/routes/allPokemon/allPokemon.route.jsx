@@ -14,7 +14,6 @@ function AllPokemonView() {
       name: poke.name,
       link: `/pokemon/${poke.name}`,
       singlePokeData: {
-        // TODO send single poke data asynchronously
         key: poke.name,
         keyType: "name",
       },

@@ -13,7 +13,7 @@ function TypeItemView() {
   const { pokemons, loading } = useSelector((state) => state.pokeList);
 
   const { genNumber } = useParams();
-
+  
   const [page, setPage] = useState(1);
   const pathList = [
     {
@@ -28,16 +28,16 @@ function TypeItemView() {
   useEffect(() => {
     dispatch(getPokemonByGen(genNumber));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const cardsData = pokemons.map(poke => {
     return {
       name: poke.name,
       link: `/gens/${genNumber}/${poke.name}`,
       singlePokeData: {
-        // TODO send single poke data asynchronously
-        key: "https://pokeapi.co/api/v2/pokemon/ditto",
-        keyType: "url",
+        // TODO fix get sprites for gen pokemon
+        key: poke.name,
+        keyType: "name",
       },
     }
   }).slice((page - 1) * 18, page * 18);

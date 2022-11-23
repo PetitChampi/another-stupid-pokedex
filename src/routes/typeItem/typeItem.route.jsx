@@ -28,16 +28,15 @@ function TypeItemView() {
   useEffect(() => {
     dispatch(getPokemonByType(typeName));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const cardsData = pokemonsByType.map(item => {
     return {
       name: item.pokemon.name,
       link: `/types/${typeName}/${item.pokemon.name}`,
       singlePokeData: {
-        // TODO send single poke data asynchronously
-        key: "https://pokeapi.co/api/v2/pokemon/ditto",
-        keyType: "url",
+        key: item.pokemon.name,
+        keyType: "name",
       },
     }
   }).slice((page - 1) * 18, page * 18);
