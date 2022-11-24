@@ -22,7 +22,13 @@ function Card({ categoryCard, cardTitle, cardLink, singlePokeData }) {
   return (
     <Link to={cardLink}>
       <div className="card">
-        <img src={cardImgUrl} alt={cardTitle} className="card_img" />
+        {cardImgUrl ?
+          <img src={cardImgUrl} alt={cardTitle} />
+          :
+          <div className="card_nosprite">
+            <span className="card_nosprite_text">no sprite</span>
+          </div>
+        }
         <span className={
           `card_title
           ${categoryCard && "category"}`
