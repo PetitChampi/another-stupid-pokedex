@@ -1,0 +1,4 @@
+add images for single gen + single type pages (destructure cardsData in render)
+error handling for 404 on single pokemon & genItem
+fix when species name doesn't match pokemon name (genItem)
+[OPTIONAL] pagination for individual pokemon page
