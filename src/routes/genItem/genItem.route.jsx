@@ -35,7 +35,6 @@ function TypeItemView() {
       name: poke.name,
       link: `/gens/${genNumber}/${poke.name}`,
       singlePokeData: {
-        // TODO fix get sprites for gen pokemon
         key: poke.name,
         keyType: "name",
       },
